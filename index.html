@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>WK 2026 Schema</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="hero" id="top">
+      <nav class="topbar" aria-label="Hoofdnavigatie">
+        <a class="brand" href="#top">WK 2026</a>
+        <div class="navlinks">
+          <a href="#schema">Schema</a>
+          <a href="#live">Live</a>
+          <a href="#replays">Terugkijken</a>
+          <a href="#info">Info</a>
+        </div>
+      </nav>
+
+      <section class="hero-content" aria-labelledby="page-title">
+        <p class="kicker">Simpel WK-overzicht</p>
+        <h1 id="page-title">WK kijken zonder te zoeken.</h1>
+        <p>
+          Kies een match, bekijk wie speelt en kijk later de automatische
+          wedstrijdfilm met goals, kaarten en belangrijke momenten.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="#schema">Bekijk het schema</a>
+          <a class="button ghost" href="#live">Wat is nu live?</a>
+        </div>
+      </section>
+
+      <div class="stadium-scene" aria-hidden="true">
+        <div class="light-beams"></div>
+        <div class="crowd"></div>
+        <div class="field">
+          <span class="field-line"></span>
+          <span class="ball"></span>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="section quick-board" aria-label="Snel overzicht">
+        <article class="big-status">
+          <span class="label">Nu</span>
+          <strong id="nowTitle">Geen match live</strong>
+          <p id="nowText">Vandaag is er nog geen WK-match bezig.</p>
+        </article>
+
+        <article class="big-status next">
+          <span class="label">Volgende</span>
+          <strong id="nextTitle">Mexico vs Zuid-Afrika</strong>
+          <p id="nextText">Donderdag 11 juni 2026 - Mexico City Stadium</p>
+        </article>
+
+        <article class="big-status record">
+          <span class="label">Opnames</span>
+          <strong id="recordTitle">Automatisch aan</strong>
+          <p>Elke live match krijgt automatisch een wedstrijdfilm.</p>
+        </article>
+      </section>
+
+      <section class="section" id="schema" aria-labelledby="schedule-title">
+        <div class="section-heading">
+          <p class="eyebrow">Schema</p>
+          <h2 id="schedule-title">Wie speelt wanneer?</h2>
+          <p>Gebruik de grote knoppen. Geen gedoe, gewoon klikken.</p>
+        </div>
+
+        <div class="filters" aria-label="Schema filter">
+          <button class="filter-button active" type="button" data-filter="all">Alle wedstrijden</button>
+          <button class="filter-button" type="button" data-filter="today">Vandaag</button>
+          <button class="filter-button" type="button" data-filter="netherlands">Nederland</button>
+          <button class="filter-button" type="button" data-filter="belgium">Belgie</button>
+          <button class="filter-button" type="button" data-filter="weekend">Weekend</button>
+        </div>
+
+        <div class="simple-list" id="matchList"></div>
+      </section>
+
+      <section class="section watch-section" aria-labelledby="watch-title">
+        <div class="section-heading">
+          <p class="eyebrow">Wedstrijdfilm</p>
+          <h2 id="watch-title">Kies een match en kijk de momenten</h2>
+          <p>
+            Als de match nog niet live is, zie je de info. Als hij live of klaar is,
+            zie je de opname met alle momenten.
+          </p>
+        </div>
+
+        <div class="viewer">
+          <div class="viewer-screen">
+            <div class="viewer-glow" aria-hidden="true"></div>
+            <div class="play-symbol" aria-hidden="true"></div>
+            <strong id="viewerTitle">Kies een match uit het schema</strong>
+            <p id="viewerText">Klik op Bekijk bij een wedstrijd.</p>
+          </div>
+          <ol class="timeline viewer-timeline" id="viewerTimeline"></ol>
+        </div>
+      </section>
+
+      <section class="section live-area" id="live" aria-labelledby="live-title">
+        <div class="live-card">
+          <div class="section-heading compact">
+            <p class="eyebrow" id="liveStatus">Niet live</p>
+            <h2 id="live-title">Geen match live</h2>
+          </div>
+
+          <div class="scoreboard" aria-live="polite">
+            <div class="team">
+              <strong id="homeName">Thuis</strong>
+              <span class="score" id="homeScore">-</span>
+            </div>
+            <div class="match-clock">
+              <span class="live-dot"></span>
+              <span id="minute">0'</span>
+            </div>
+            <div class="team">
+              <span class="score" id="awayScore">-</span>
+              <strong id="awayName">Uit</strong>
+            </div>
+          </div>
+
+          <p class="live-message" id="liveMessage">
+            Zodra er een match live is, zie je hier score, minuut en winnaar.
+          </p>
+
+          <div class="match-actions">
+            <a class="button primary" href="https://www.vrt.be/vrtmax/" target="_blank" rel="noreferrer">Kijken via VRT MAX</a>
+            <a class="button ghost" href="https://auvio.rtbf.be/" target="_blank" rel="noreferrer">Kijken via RTBF Auvio</a>
+            <button class="button alert recording" type="button" id="recordBtn">Automatische opname aan</button>
+          </div>
+        </div>
+
+        <aside class="moments-card" aria-labelledby="timeline-title">
+          <div class="section-heading compact">
+            <p class="eyebrow">Momenten</p>
+            <h2 id="timeline-title">Wat gebeurde er?</h2>
+          </div>
+          <ol class="timeline" id="timeline"></ol>
+        </aside>
+      </section>
+
+      <section class="section day-grid" aria-labelledby="day-title">
+        <div class="section-heading">
+          <p class="eyebrow">Vandaag</p>
+          <h2 id="day-title">Winnaars, live en straks</h2>
+        </div>
+
+        <article class="tool-panel">
+          <h3>Al gespeeld</h3>
+          <div class="result-list" id="resultList"></div>
+        </article>
+
+        <article class="tool-panel">
+          <h3>Nu bezig</h3>
+          <div class="result-list" id="liveList"></div>
+        </article>
+
+        <article class="tool-panel">
+          <h3>Nog te spelen</h3>
+          <div class="result-list" id="upcomingList"></div>
+        </article>
+      </section>
+
+      <section class="section replay-alert-grid">
+        <div id="replays" class="tool-panel" aria-labelledby="replay-title">
+          <div class="section-heading compact">
+            <p class="eyebrow">Terugkijken</p>
+            <h2 id="replay-title">Automatische wedstrijdfilms</h2>
+          </div>
+          <div id="replayList" class="replay-list"></div>
+        </div>
+
+        <div id="meldingen" class="tool-panel" aria-labelledby="alert-title">
+          <div class="section-heading compact">
+            <p class="eyebrow">Meldingen</p>
+            <h2 id="alert-title">Seintje bij goals</h2>
+          </div>
+          <p class="panel-copy">
+            Zet meldingen aan. Dan krijg je een seintje bij goals en eindstanden.
+          </p>
+          <button class="button primary full" type="button" id="notifyBtn">Meldingen aanzetten</button>
+          <div class="status-line" id="notifyStatus">Nog niet aangezet</div>
+        </div>
+      </section>
+
+      <section class="section facts" id="info" aria-labelledby="facts-title">
+        <div class="section-heading">
+          <p class="eyebrow">Info</p>
+          <h2 id="facts-title">WK 2026 simpel uitgelegd</h2>
+        </div>
+        <div class="fact-grid">
+          <article>
+            <strong>Wanneer?</strong>
+            <span>11 juni tot 19 juli 2026.</span>
+          </article>
+          <article>
+            <strong>Waar?</strong>
+            <span>Verenigde Staten, Canada en Mexico.</span>
+          </article>
+          <article>
+            <strong>Hoe groot?</strong>
+            <span>48 landen en 104 wedstrijden.</span>
+          </article>
+          <article>
+            <strong>Belgie kijken?</strong>
+            <span>VRT en RTBF staan als broadcasters vermeld.</span>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <dialog class="replay-modal" id="replayModal">
+      <div class="modal-head">
+        <h2>Replay</h2>
+        <button class="icon-button" type="button" id="closeReplay" aria-label="Sluit replay">x</button>
+      </div>
+      <ol class="timeline replay-timeline" id="replayTimeline"></ol>
+    </dialog>
+
+    <script src="app.js"></script>
+  </body>
+</html>
